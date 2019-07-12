@@ -6,6 +6,10 @@ TagManager:
   tags:
   - wall
   - player
+  - GoldCoin
+  - SilverCoin
+  - Diamond
+  - Heart
   layers:
   - Default
   - TransparentFX
