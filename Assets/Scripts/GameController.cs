@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
 
     public float GetScore() { return score; }
     public float GetTimeElapsed() { return timeElapsed; }
+    public float GetLevel() { return level; }
 
     // Start is called before the first frame update
     void Start()
