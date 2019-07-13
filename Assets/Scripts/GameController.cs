@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     private int score;
     private float timeElapsed;
+    private int level;
+    private int totalLevels = 3; // ci sono in totale 3 livelli
 
     public int bonusSilverCoin = 1;
     public int bonusGoldCoin = 2;    
@@ -20,18 +23,21 @@ public class GameController : MonoBehaviour
     {
         score = 0;
         timeElapsed = 0;
+        level = SceneManager.GetActiveScene().buildIndex;
     }
 
     // Update is called once per frame
     void Update()
     {
         timeElapsed += Time.deltaTime;
-    }    
+    }
 
+    #region PowerUp collected methods
     public void SilverCoinCollected()
     {
         score += bonusSilverCoin;
-        print(score);
+        
+print(score);
     }
 
     public void GoldCoinCollected()
@@ -50,5 +56,21 @@ public class GameController : MonoBehaviour
     {
         score += bonusHeart;
         print(score);
+    }
+    #endregion
+
+    public void FinishLevel()
+    {
+        print(level);
+        if(level < totalLevels - 1)
+        {
+            level++;
+            SceneManager.LoadScene(level); 
+        }  
+        else
+        {
+            level = 0;
+            SceneManager.LoadScene(level);
+        }
     }
 }

@@ -18,6 +18,6 @@ public class UIPanel : MonoBehaviour
     void Update()
     {
         text.text = "Score: " + ((int)(gameController.GetScore())).ToString() +
-                        "\nTotal time: " + ((int)(gameController.GetTimeElapsed())).ToString();
+                    "\nTotal time: " + ((int)(gameController.GetTimeElapsed())).ToString();
     }
 }
