@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public GameObject gameOverMenu;
     public GameObject player;
+    public GameController gameController;
 
     private int restartScene = 0;
+    private bool notPressPause = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,18 +25,29 @@ public class PauseMenu : MonoBehaviour
         //if (Input.GetAxis("Pause") > 0)
         if (Input.GetKeyDown(KeyCode.P))
         {
-            if (pauseMenu.activeSelf)
+            if (!notPressPause)
             {
-                Resume();
-            }
-            else
-            {
-                pauseMenu.SetActive(true);
-                Time.timeScale = 0f;
-                player.GetComponentInChildren<RotateCamera>().enabled = false;
+                if (pauseMenu.activeSelf)
+                {
+                    Resume();
+                }
+                else
+                {
+                    pauseMenu.SetActive(true);
+                    Time.timeScale = 0f;
+                    player.GetComponentInChildren<RotateCamera>().enabled = false;
 
+                }
             }
-        }            
+        }   
+        
+        if(gameController.GetGameOver())
+        {
+            gameOverMenu.SetActive(true);
+            Time.timeScale = 0f;
+            player.GetComponentInChildren<RotateCamera>().enabled = false;
+            notPressPause = true;            
+        }
 
     }
 
@@ -45,9 +59,10 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void Restart()
-    {
-        Time.timeScale = 1f;
+    {                        
+        SceneManager.LoadScene(restartScene);        
         player.GetComponentInChildren<RotateCamera>().enabled = true;
-        SceneManager.LoadScene(restartScene);
+        gameController.ResetGameOver();
+        notPressPause = false;        
     }
 }

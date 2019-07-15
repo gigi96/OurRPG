@@ -17,8 +17,12 @@ public class UIPanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         text.text = "LEVEL " + ((int)(gameController.GetLevel() + 1)).ToString() +
                     "\n\nScore: " + ((int)(gameController.GetScore())).ToString() +
-                    "\nTotal time: " + ((int)(gameController.GetTimeElapsed())).ToString() + " seconds";
+                    "\nTime remaining: " + ((int)(Mathf.Floor(gameController.GetTimeRemaining() / 60))).ToString() + 
+                    ":" + ((int)(Mathf.RoundToInt(gameController.GetTimeRemaining() % 60))).ToString();
+        
+        
     }
 }

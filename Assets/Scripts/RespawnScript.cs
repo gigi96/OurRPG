@@ -6,12 +6,12 @@ using System.Collections.Generic;
 public class RespawnScript : MonoBehaviour
 {
 
-    public Transform respawnPoint;    
+    public Transform respawnPoint;
 
-    // Triggers when the player enters the water
     void OnTriggerEnter(Collider other)
-    {     
-
+    //void OnCollisionEnter(Collision other)
+    {
+        print("ciao");
         // Moves the player to the spawn point
         other.gameObject.GetComponent<CharacterController>().enabled = false;
 		other.gameObject.transform.position = respawnPoint.position;

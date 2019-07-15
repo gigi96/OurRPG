@@ -19,8 +19,7 @@ public class PowerUp : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider collider)
-    {
-        //controller.PowerUpCollected();
+    {        
         if (gameObject.tag == "SilverCoin")
             controller.SilverCoinCollected();
         else if (gameObject.tag == "GoldCoin")
