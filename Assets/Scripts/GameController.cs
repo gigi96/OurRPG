@@ -17,9 +17,9 @@ public class GameController : MonoBehaviour
     public int bonusHeart = 10;
     public int malusFlame = -5;
 
-    public float[] maxTime = { 5f, 270f, 540f }; // 180 secondi per il primo livello
-                                                 // 270 secondi per il secondo livello
-                                                 // 540 secondi per il terzo livello  
+    public float[] maxTime = { 180f, 300f, 540f }; // 180 secondi per il primo livello
+                                                   // 300 secondi per il secondo livello
+                                                   // 540 secondi per il terzo livello  
     
 
     public float GetScore() { return score; }
@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour
     {        
         score = 0;
         level = SceneManager.GetActiveScene().buildIndex;
-        timeRemaining = maxTime[level] + Time.deltaTime;
+        timeRemaining = maxTime[level - 1] - 1;
         gameOver = false;
         Time.timeScale = 1f;
     }
@@ -91,14 +91,14 @@ public class GameController : MonoBehaviour
     public void FinishLevel()
     {
         print(level);
-        if(level < totalLevels - 1)
+        if(level < totalLevels)
         {
             level++;
             SceneManager.LoadScene(level); 
         }  
         else
         {
-            level = 0;
+            level = 1;
             SceneManager.LoadScene(level);
         }
     }

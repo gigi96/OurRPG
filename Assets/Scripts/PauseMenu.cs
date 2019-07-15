@@ -64,5 +64,5 @@ public class PauseMenu : MonoBehaviour
         player.GetComponentInChildren<RotateCamera>().enabled = true;
         gameController.ResetGameOver();
         notPressPause = false;        
-    }
+    }    
 }

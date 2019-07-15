@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIPanel : MonoBehaviour
 {
     public GameController gameController;
-    private Text text;
+    private Text text;     
 
     // Start is called before the first frame update
     void Start()
@@ -17,12 +17,9 @@ public class UIPanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        text.text = "LEVEL " + ((int)(gameController.GetLevel() + 1)).ToString() +
-                    "\n\nScore: " + ((int)(gameController.GetScore())).ToString() +
-                    "\nTime remaining: " + ((int)(Mathf.Floor(gameController.GetTimeRemaining() / 60))).ToString() + 
-                    ":" + ((int)(Mathf.RoundToInt(gameController.GetTimeRemaining() % 60))).ToString();
-        
-        
+        text.text = "LEVEL " + ((int)(gameController.GetLevel())).ToString() +
+                        "\n\nScore: " + ((int)(gameController.GetScore())).ToString() +
+                        "\nTime remaining: " + ((int)(Mathf.Floor(gameController.GetTimeRemaining() / 60))).ToString("0") +
+                         ":" + ((int)(Mathf.RoundToInt(gameController.GetTimeRemaining() % 60))).ToString("00");          
     }
 }
