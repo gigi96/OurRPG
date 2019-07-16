@@ -12,7 +12,7 @@ public class PowerDown : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        controller = GameController.FindObjectOfType<GameController>();
     }
 
     // Update is called once per frame

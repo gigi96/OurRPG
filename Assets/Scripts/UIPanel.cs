@@ -11,6 +11,7 @@ public class UIPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameController = GameController.FindObjectOfType<GameController>();
         text = gameObject.GetComponentInChildren<Text>();
     }
 

@@ -16,7 +16,7 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameController = GameController.FindObjectOfType<GameController>();
     }
 
     // Update is called once per frame
@@ -58,11 +58,19 @@ public class PauseMenu : MonoBehaviour
         player.GetComponentInChildren<RotateCamera>().enabled = true;
     }
 
-    public void Restart()
+    public void RestartGame()
     {                        
         SceneManager.LoadScene(restartScene);        
         player.GetComponentInChildren<RotateCamera>().enabled = true;
         gameController.ResetGameOver();
         notPressPause = false;        
-    }    
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        player.GetComponentInChildren<RotateCamera>().enabled = true;
+        gameController.ResetGameOver();
+        notPressPause = false;
+    }
 }
