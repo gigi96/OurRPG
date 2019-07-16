@@ -21,7 +21,9 @@ public class GameController : MonoBehaviour
                                                         // 180 secondi per il primo livello
                                                         // 300 secondi per il secondo livello
                                                         // 600 secondi per il terzo livello  
-    
+
+    private AudioSource audioSource;
+
 
     public float GetScore() { return score; }
     public float GetTimeRemaining() { return timeRemaining; }
@@ -37,11 +39,14 @@ public class GameController : MonoBehaviour
         timeRemaining = maxTime[level] - 1;
         gameOver = false;
         Time.timeScale = 1f;
+
+        audioSource = GameObject.Find("AudioSources").GetComponents<AudioSource>()[0]; // backgrounSource     
+        
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {        
         print(Time.timeScale);
         if (!gameOver)
         {
@@ -90,8 +95,7 @@ public class GameController : MonoBehaviour
     #endregion
 
     public void FinishLevel()
-    {
-        print(level);
+    {        
         if(level < totalLevels)
         {
             level++;

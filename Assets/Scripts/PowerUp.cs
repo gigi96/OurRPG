@@ -6,10 +6,14 @@ public class PowerUp : MonoBehaviour
 {
     public GameController controller;
 
+    private AudioSource audioSource;    
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GameController.FindObjectOfType<GameController>();
+        audioSource = GameObject.Find("AudioSources").GetComponents<AudioSource>()[1]; // powerupSource       
+        audioSource.loop = false;
     }
 
     // Update is called once per frame
@@ -19,7 +23,9 @@ public class PowerUp : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider collider)
-    {        
+    {
+        audioSource.Play();        
+
         if (gameObject.tag == "SilverCoin")
             controller.SilverCoinCollected();
         else if (gameObject.tag == "GoldCoin")
@@ -29,6 +35,6 @@ public class PowerUp : MonoBehaviour
         else if (gameObject.tag == "Heart")
             controller.HeartCollected();
 
-        Destroy(gameObject);
+        Destroy(gameObject);        
     }
 }

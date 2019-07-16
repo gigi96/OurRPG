@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
+  bonusSound: {fileID: 8300000, guid: d67377b725bda0d47a4c0a4ddcc96e3b, type: 3}
 --- !u!114 &447223103232187339
 MonoBehaviour:
   m_ObjectHideFlags: 0

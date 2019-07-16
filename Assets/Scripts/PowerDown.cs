@@ -5,14 +5,17 @@ using UnityEngine;
 public class PowerDown : MonoBehaviour
 {
     public GameController controller;
+    private AudioSource audioSource;
 
-    private float deltaTimePowerDown = 1f; // ogni secondo decremento lo score del giocatore
+    private float deltaTimePowerDown = 3f; // ogni tre secondi decremento lo score del giocatore
     private float timer = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GameController.FindObjectOfType<GameController>();
+        audioSource = GameObject.Find("AudioSources").GetComponents<AudioSource>()[2]; // powerdownSource  
+        audioSource.loop = false;
     }
 
     // Update is called once per frame
@@ -20,7 +23,7 @@ public class PowerDown : MonoBehaviour
     {
         if (timer < deltaTimePowerDown)
         {
-            timer += Time.deltaTime;
+            timer += Time.deltaTime;            
         }
         else
         {
@@ -32,7 +35,9 @@ public class PowerDown : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)    
     {
+        audioSource.Play(); 
         
+
         if (gameObject.tag == "Flame")
             controller.FlameMalus();
     }        
