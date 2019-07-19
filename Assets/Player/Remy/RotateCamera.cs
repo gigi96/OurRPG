@@ -40,6 +40,6 @@ public class RotateCamera : MonoBehaviour
             transform.localPosition = new Vector3(0, minZoom, -(minZoom + positionView));
 
         if (transform.localPosition.y > maxZoom)
-            transform.localPosition = new Vector3(0, maxZoom, -(maxZoom + positionView));
+            transform.localPosition = new Vector3(0, maxZoom, -(maxZoom + positionView));        
     }
 }

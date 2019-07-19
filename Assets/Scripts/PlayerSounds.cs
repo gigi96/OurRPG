@@ -30,8 +30,7 @@ public class PlayerSounds : MonoBehaviour
         isJumping = GetComponent<SetAxisScript>().JumpInput;
 
         if (controller.isGrounded)
-        {
-            print("ground");
+        {            
             temp = false;
             if (!footstepAudioSource.isPlaying)
                 if ((Mathf.Abs(velocity.x) > 0.1f || Mathf.Abs(velocity.z) > 0.1f))

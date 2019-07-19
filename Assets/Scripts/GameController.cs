@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
     public int bonusHeart = 10;
     public int malusFlame = -5;
 
-    public float[] maxTime = { -1f, 180f, 300f, 600f }; // -1 (non ha significato, dato che il tempo non serve per il menu iniziale
+    public float[] maxTime = { -1f, 5f, 300f, 600f }; // -1 (non ha significato, dato che il tempo non serve per il menu iniziale
                                                         // 180 secondi per il primo livello
                                                         // 300 secondi per il secondo livello
                                                         // 600 secondi per il terzo livello  
@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour
     public bool GetGameOver() { return gameOver; }
     public void ResetGameOver() { gameOver = false; }
 
+
     // Start is called before the first frame update
     void Start()
     {        
@@ -40,22 +41,23 @@ public class GameController : MonoBehaviour
         gameOver = false;
         Time.timeScale = 1f;
 
-        audioSource = GameObject.Find("AudioSources").GetComponents<AudioSource>()[0]; // backgrounSource     
-        
+        audioSource = GameObject.Find("AudioSources").GetComponents<AudioSource>()[0]; // backgrounSdource     
+
+
     }
 
     // Update is called once per frame
     void Update()
-    {        
-        print(Time.timeScale);
+    {                
         if (!gameOver)
         {
             if (timeRemaining < 0.1f)
             {
-                gameOver = true;
-                Time.timeScale = 0f;
+                
+                gameOver = true;                
+                Time.timeScale = 0f;                
             }
-        }
+        }        
 
         timeRemaining -= Time.deltaTime;
     }
@@ -107,4 +109,5 @@ public class GameController : MonoBehaviour
             SceneManager.LoadScene(level);
         }
     }
+    
 }
