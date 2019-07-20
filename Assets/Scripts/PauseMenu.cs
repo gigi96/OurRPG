@@ -17,8 +17,9 @@ public class PauseMenu : MonoBehaviour
 
     private string pauseAxis = "Pause";
 
-    UnityEvent gameOverEvent;
-    private bool temp = false;
+    UnityEvent gameOverEvent, pauseEvent;
+    private bool temp1 = false;
+    private bool temp2 = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,12 @@ public class PauseMenu : MonoBehaviour
         if (gameOverEvent == null)
             gameOverEvent = new UnityEvent();
 
-        gameOverEvent.AddListener(Ping);
+        gameOverEvent.AddListener(ListenerGameOverEvent);
+
+        if (pauseEvent == null)
+            pauseEvent = new UnityEvent();
+
+        pauseEvent.AddListener(ListenerPauseEvent);
     }
 
     // Update is called once per frame
@@ -46,6 +52,13 @@ public class PauseMenu : MonoBehaviour
                 else
                 {
                     pauseMenu.SetActive(true);
+
+                    if (!temp2)
+                    {
+                        ListenerPauseEvent();
+                        temp2 = true;
+                    }
+
                     Time.timeScale = 0f;
                     player.GetComponentInChildren<RotateCamera>().enabled = false;
                     player.GetComponent<RotateCharacter>().enabled = false;
@@ -57,10 +70,11 @@ public class PauseMenu : MonoBehaviour
         if(gameController.GetGameOver())
         {
             gameOverMenu.SetActive(true);
-            if(!temp)
+
+            if(!temp1)
             {
-                Ping();
-                temp = true;
+                ListenerGameOverEvent();
+                temp1 = true;
             }
             
             Time.timeScale = 0f;
@@ -76,34 +90,48 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         player.GetComponentInChildren<RotateCamera>().enabled = true;
-        player.GetComponent<RotateCharacter>().enabled = true;        
+        player.GetComponent<RotateCharacter>().enabled = true;
+
+        GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(null);
+        temp2 = false;
     }
 
     public void RestartGame()
-    {                        
+    {                  
+        if(pauseMenu.activeSelf)
+            temp2 = false;
+
         SceneManager.LoadScene(restartScene);        
         player.GetComponentInChildren<RotateCamera>().enabled = true;
         player.GetComponent<RotateCharacter>().enabled = true;
         gameController.ResetGameOver();
         notPressPause = false;
 
-        temp = false;
+        temp1 = false;
         
     }
 
     public void RestartLevel()
     {
+        if (pauseMenu.activeSelf)
+            temp2 = false;
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         player.GetComponentInChildren<RotateCamera>().enabled = true;
         player.GetComponent<RotateCharacter>().enabled = true;
         gameController.ResetGameOver();
         notPressPause = false;
 
-        temp = false;
+        temp1 = false;
     }
 
-    void Ping()
+    void ListenerGameOverEvent()
     {
         GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(GameObject.Find("RestartLevelButton"));
+    }
+
+    void ListenerPauseEvent()
+    {
+        GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(GameObject.Find("ResumeButton"));
     }
 }
