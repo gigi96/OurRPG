@@ -4711,6 +4711,14 @@ PrefabInstance:
       propertyPath: m_SlopeLimit
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 1061839772, guid: f8ec6a5f99ba07b448efe65347b9fe10, type: 3}
+      propertyPath: switchSpeedButton
+      value: Speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1061839773, guid: f8ec6a5f99ba07b448efe65347b9fe10, type: 3}
+      propertyPath: runSpeed
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8ec6a5f99ba07b448efe65347b9fe10, type: 3}
 --- !u!1 &475850093 stripped

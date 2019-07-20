@@ -35,8 +35,7 @@ public class PowerDown : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)    
     {
-        audioSource.Play(); 
-        
+        audioSource.Play();         
 
         if (gameObject.tag == "Flame")
             controller.FlameMalus();

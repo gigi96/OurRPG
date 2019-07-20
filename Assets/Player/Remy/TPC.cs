@@ -7,7 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class TPC : MonoBehaviour
 {
-    [SerializeField] [Range(0, 20)] private float runSpeed = 7;
+    [SerializeField] [Range(0, 20)] private float walkingSpeed = 7f;
+    [SerializeField] [Range(0, 20)] private float runningSpeed = 12f;   
     [SerializeField] private float gravity = 9.81f;
     [SerializeField] private float jumpingStay = 4;
     [SerializeField] private float delayStay = 0.2f;
@@ -16,13 +17,14 @@ public class TPC : MonoBehaviour
     [SerializeField] private float jumpingBack = 6;
     [SerializeField] private float delayBack = 0.1f;
 
-
+    private float runSpeed = 7f;
     private CharacterController _characterController;
     private SetAxisScript _setAxis;
     private Vector3 _movement;
     private Animator _animator;
     private bool _isJumping = false;
     private float _timeClips = 0;
+   
 
     void Start()
     {
@@ -36,6 +38,11 @@ public class TPC : MonoBehaviour
         //Debug.Log();
         _setAxis.GetInput();
         _timeClips = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+
+        if (_setAxis.SwitchInput)
+            runSpeed = runningSpeed;
+        else
+            runSpeed = walkingSpeed;
 
         if (_characterController.isGrounded && !_isJumping)
         {

@@ -65,34 +65,29 @@ public class GameController : MonoBehaviour
     #region PowerUp collected methods
     public void SilverCoinCollected()
     {
-        score += bonusSilverCoin;        
-        print(score);
+        score += bonusSilverCoin;       
     }
 
     public void GoldCoinCollected()
     {
-        score += bonusGoldCoin;
-        print(score);
+        score += bonusGoldCoin;       
     }
 
     public void DiamondCollected()
     {
-        score += bonusDiamond;
-        print(score);
+        score += bonusDiamond;        
     }
 
     public void HeartCollected()
     {
-        score += bonusHeart;
-        print(score);
+        score += bonusHeart;        
     }
     #endregion
 
     #region PowerDown methods
     public void FlameMalus()
     {
-        score += malusFlame;
-        print(score);
+        score += malusFlame;        
     }
     #endregion
 

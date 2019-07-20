@@ -6,7 +6,8 @@ public class SetAxisScript : MonoBehaviour
 {
     [SerializeField] private string movementAxis = "Vertical";
     [SerializeField] private string rotateAxis = "Horizontal";
-    [SerializeField] private KeyCode switchSpeedButton = KeyCode.LeftShift;
+    //[SerializeField] private KeyCode switchSpeedButton = KeyCode.LeftShift;
+    [SerializeField] private string switchSpeedButton = "Speed";
     [SerializeField] private string jumpAxis = "Jump";
 
     public float ForwardInput { get; set; }
@@ -18,7 +19,7 @@ public class SetAxisScript : MonoBehaviour
     {
         ForwardInput = Input.GetAxis(movementAxis);
         RotateInput = Input.GetAxis(rotateAxis);
-        SwitchInput = Input.GetKey(switchSpeedButton);
+        SwitchInput = Input.GetButton(switchSpeedButton);
         JumpInput = Input.GetButton(jumpAxis);
     }
 }
