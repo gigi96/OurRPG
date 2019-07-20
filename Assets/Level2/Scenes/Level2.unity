@@ -5572,6 +5572,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 13400000, guid: 807df45863135514cb710b487805774e,
         type: 2}
+    - target: {fileID: 1061839772, guid: f8ec6a5f99ba07b448efe65347b9fe10, type: 3}
+      propertyPath: switchSpeedButton
+      value: Speed
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8ec6a5f99ba07b448efe65347b9fe10, type: 3}
 --- !u!1001 &1488752176
